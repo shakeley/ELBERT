@@ -1,6 +1,6 @@
 # ELBERT
 ELBERT is a fast BERT-like model coupled with a confidence-window based early exit mechanism, which achieves high-speed inference based on ALBERT without introducing additional parameters. It's quite easy for users to migrate from ALBERT to ELBERT for fast inference. 
-
+<img src="https://github.com/shakeley/pics/blob/master/Transmodel.svg" alt="6cebc512b4fe9d336d256d6f4720b1f" style="zoom:67%;" />
 ## Environment
 
 Our code is implemented in```python=3.6.5, pytorch=1.4.0 (GPU Version)```. To run it, please install ```transformers``` by ```pip```
