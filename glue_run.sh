@@ -1,19 +1,18 @@
 export CUDA_VISIBLE_DEVICES=$2
-export PRE_DIR=/home/xiekeli/
+export PRE_DIR=/home/xxx
 export MODEL=albert_large
 
 # required
 export TEST_MODE="one"
 export TASK_NAME=RTE
-export MODE=new
 export GLUE_DIR=${PRE_DIR}BERT/params/GLUE
-export W_DIR=${PRE_DIR}BERT/params/W/${MODEL}/${MODE}
-export OUT_DIR=${PRE_DIR}BERT/myoutput/${MODEL}/${MODE}
+export W_DIR=${PRE_DIR}BERT/params/W/${MODEL}/
+export OUT_DIR=${PRE_DIR}BERT/myoutput/${MODEL}/
 
 echo "Task:$TASK_NAME"
 if [ $1 = "1" ];then
 echo "Train!"
-python ~/examples/run_glue.py \
+python ./run_glue.py \
   --per_gpu_train_batch_size 32 \
   --learning_rate 3e-5 \
   --num_train_epochs 3.0 \
@@ -50,16 +49,15 @@ export V=0.$i
 # do
 # export V=$i
 
-python  /home/xiekeli/BERT/myoutput/change_config.py \
+python ./change_config.py \
   --key $KEY \
   --value $V \
   --task $TASK_NAME \
   --model $MODEL \
   --out_dir ${OUT_DIR} \
 
-python ~/examples/run_glue.py \
+python ./run_glue.py \
   --out_mode $TEST_MODE \
-  --seed 42 \
   --per_gpu_train_batch_size 32 \
   --learning_rate 1e-5 \
   --save_steps 5000 \
@@ -74,8 +72,6 @@ python ~/examples/run_glue.py \
   --data_dir $GLUE_DIR/$TASK_NAME \
   --model_name_or_path $W_DIR \
   --output_dir $OUT_DIR/$TASK_NAME \
-  # --config_name $W_DIR \
-  # --do_train \
 
 done
 
@@ -83,7 +79,7 @@ done
 elif [ $TEST_MODE = "one" ];then
 export KEY=exit_thres
 export V=0.4
-python  /home/xiekeli/BERT/myoutput/change_config.py \
+python ./change_config.py \
   --key $KEY \
   --value $V \
   --task $TASK_NAME \
@@ -92,7 +88,7 @@ python  /home/xiekeli/BERT/myoutput/change_config.py \
 
 export KEY=cnt_thres
 export V=8
-python  /home/xiekeli/BERT/myoutput/change_config.py \
+python  ./change_config.py \
   --key $KEY \
   --value $V \
   --task $TASK_NAME \
@@ -100,7 +96,7 @@ python  /home/xiekeli/BERT/myoutput/change_config.py \
   --out_dir ${OUT_DIR} \
 
 
-python ~/examples/run_glue.py \
+python ./run_glue.py \
   --out_mode $TEST_MODE \
   --per_gpu_train_batch_size 32 \
   --learning_rate 1e-5 \
