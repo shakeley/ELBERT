@@ -1,13 +1,13 @@
 export CUDA_VISIBLE_DEVICES=$2
-export PRE_DIR=/home/xxx
+export PRE_DIR=/home/xxx/
 export MODEL=albert_large
 
 # required
 export TEST_MODE="one"
 export TASK_NAME=RTE
 export GLUE_DIR=${PRE_DIR}BERT/params/GLUE
-export W_DIR=${PRE_DIR}BERT/params/W/${MODEL}/
-export OUT_DIR=${PRE_DIR}BERT/myoutput/${MODEL}/
+export W_DIR=${PRE_DIR}BERT/params/W/${MODEL}
+export OUT_DIR=${PRE_DIR}BERT/myoutput/${MODEL}
 
 echo "Task:$TASK_NAME"
 if [ $1 = "1" ];then
