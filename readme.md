@@ -118,9 +118,6 @@ Computation cost: 0.5881
 acc = 0.8122743682310469
 ```
 
-## Contact
-
-For inquiries, please email shakelyxie@foxmail.com. 
 
 
 
